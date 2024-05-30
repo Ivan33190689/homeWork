@@ -11,23 +11,19 @@ public class Main {
         FamilyTree familyTree = new FamilyTree();
 
 
-        Human person1 = new Human("Инна", LocalDate.of(1976, 5, 16), Gender.Female);
-        Human person2 = new Human("Роман", LocalDate.of(1978, 6, 25), Gender.Male);
-        Human person3 = new Human("Валерий", LocalDate.of(1953, 2, 10), Gender.Male);
-        Human person4 = new Human("Виктория", LocalDate.of(1955, 12, 23), Gender.Female);
-        Human person5 = new Human("Вера", LocalDate.of(1998, 7, 1), Gender.Female);
-        Human person6 = new Human("Карина", LocalDate.of(2002, 9, 21), Gender.Female);
+        Human inna = new Human("Инна", LocalDate.of(1976, 5, 16), valera, vika, Gender.Female);
+        Human roma = new Human("Роман", LocalDate.of(1978, 6, 25), Gender.Male);
+        Human valera = new Human("Валерий", LocalDate.of(1953, 2, 10), Gender.Male);
+        Human vika = new Human("Виктория", LocalDate.of(1955, 12, 23), Gender.Female);
+        Human vera = new Human("Вера", LocalDate.of(1998, 7, 1), roma, inna, Gender.Female);
+        Human karina = new Human("Карина", LocalDate.of(2002, 9, 21), roma, inna, Gender.Female);
 
-        person1.setFather(person3);
-        person1.setMother(person4);
-        person1.addChild(person5);
-        person1.addChild(person6);
-        person2.addChild(person5);
-        person2.addChild(person6);
-        person4.setDayOfDeath(LocalDate.of(2022, 2, 24));
+        vika.setDayOfDeath(LocalDate.of(2022, 2, 24));
 
-        familyTree.addHuman(person1);
-        familyTree.addHuman(person2);
+        familyTree.addHuman(inna);
+        familyTree.addHuman(roma);
+        familyTree.addHuman(vera);
+        familyTree.addHuman(karina);
 
         System.out.println(familyTree);
     }

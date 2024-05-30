@@ -9,20 +9,49 @@ public class FamilyTree {
     private List<Human> humanList;
 
     public FamilyTree() {
-        this.humanList = new ArrayList<>();
+        this(new ArrayList<>());
     }
-    public void addHuman(Human human) {
-        humanList.add(human);
+
+    public FamilyTree(List<Human> humanList) {
+        this.humanList = humanList;
     }
-    public Human findNameOfPeople(String nameHuman) {
+    public boolean addHuman(Human human) {
+
+        if (!humanList.contains(human)) {
+            humanList.add(human);
+            addToMother(human);
+            addToFather(human);
+            addToChildren(human);
+
+            return true;
+        }
+        return false;
+    }
+    private void addToMother(Human human) {
+        for (Human mother: human.getMother()) {
+            mother.addChild(human);
+        }
+    }
+    private void addToFather(Human human) {
+        for (Human father : human.getFather()) {
+            father.addChild(human);
+        }
+    }
+    private void addToChildren(Human human) {
+        for (Human child: human.getChildren()) {
+            child.addFather(human);
+            child.addMother(human);
+        }
+    }
+
+    public Human findNameOfPeople(String name) {
         for (Human human: humanList) {
-            if (human.getName().equals(nameHuman)) {
+            if (human.getName().equals(name)) {
                 return human;
             }
         }
         return null;
     }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -30,6 +59,7 @@ public class FamilyTree {
 
         for (Human human: humanList) {
             stringBuilder.append(human);
+            stringBuilder.append("\n");
         }
         return stringBuilder.toString();
     }
