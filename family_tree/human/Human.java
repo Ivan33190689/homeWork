@@ -24,10 +24,10 @@ public class Human {
     }
 
     public Human(String name, LocalDate dayOfBirth, Gender gender) {
-        this(name, dayOfBirth, dayOfDeath: null, father: null, mother: null, gender);
+        this(name, dayOfBirth, null, null, null, gender);
     }
     public Human(String name, LocalDate dayOfBirth, Human father, Human mother, Gender gender) {
-        this(name, dayOfBirth, dayOfDeath: null, father, mother, gender);
+        this(name, dayOfBirth, null, father, mother, gender);
     }
 
     public String getName() {
@@ -74,6 +74,15 @@ public class Human {
     private int getPeriod(LocalDate dayOfBirth, LocalDate dayOfDeath) {
         Period diff = Period.between(dayOfBirth, dayOfDeath);
         return diff.getYears();
+    }
+    public List<Human> addParents(Human human) {
+        List<Human> parents = new ArrayList<>();
+
+        if (!parents.contains(human)) {
+            parents.add(human.getFather());
+            parents.add(human.getMother());
+        }
+        return parents;
     }
 
     public boolean addChild(Human child) {

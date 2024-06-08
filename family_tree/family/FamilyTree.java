@@ -2,10 +2,11 @@ package homeWork.family_tree.family;
 
 import homeWork.family_tree.human.Human;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyTree {
+public class FamilyTree implements Serializable {
     private List<Human> humanList;
 
     public FamilyTree() {
@@ -28,23 +29,18 @@ public class FamilyTree {
         return false;
     }
     private void addToMother(Human human) {
-        for (Human mother: human.getMother()) {
-            mother.addChild(human);
-        }
+            human.getMother().addChild(human);
     }
     private void addToFather(Human human) {
-        for (Human father : human.getFather()) {
-            father.addChild(human);
-        }
+            human.getFather().addChild(human);
     }
     private void addToChildren(Human human) {
         for (Human child: human.getChildren()) {
-            child.addFather(human);
-            child.addMother(human);
+            child.addParents(human);
         }
     }
 
-    public Human findNameOfPeople(String name) {
+    public Human findName(String name) {
         for (Human human: humanList) {
             if (human.getName().equals(name)) {
                 return human;
