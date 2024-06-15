@@ -1,5 +1,6 @@
 package homeWork.family_tree.human;
 
+import java.awt.image.IndexColorModel;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -7,13 +8,15 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class Human {
+    private long humanId;
     private String name;
     private LocalDate dayOfBirth, dayOfDeath;
     private Human father, mother;
     private List<Human> children;
     private Gender gender;
 
-    public Human(String name, LocalDate dayOfBirth, LocalDate dayOfDeath, Human father, Human mother, Gender gender) {
+    public Human(long humanId, String name, LocalDate dayOfBirth, LocalDate dayOfDeath, Human father, Human mother, Gender gender) {
+        this.humanId = humanId;
         this.name = name;
         this.dayOfBirth = dayOfBirth;
         this.dayOfDeath = dayOfDeath;
@@ -23,11 +26,15 @@ public class Human {
         children = new ArrayList<>();
     }
 
-    public Human(String name, LocalDate dayOfBirth, Gender gender) {
-        this(name, dayOfBirth, null, null, null, gender);
+    public Human(long humanId, String name, LocalDate dayOfBirth, Gender gender) {
+        this(humanId, name, dayOfBirth, null, null, null, gender);
     }
-    public Human(String name, LocalDate dayOfBirth, Human father, Human mother, Gender gender) {
-        this(name, dayOfBirth, null, father, mother, gender);
+    public Human(long humanId, String name, LocalDate dayOfBirth, Human father, Human mother, Gender gender) {
+        this(humanId, name, dayOfBirth, null, father, mother, gender);
+    }
+
+    public long getHumanId() {
+        return humanId;
     }
 
     public String getName() {
@@ -104,6 +111,7 @@ public class Human {
         sibLings.remove(this);
         return sibLings;
     }
+
 
     @Override
     public String toString() {

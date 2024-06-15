@@ -3,15 +3,19 @@ package homeWork.family_tree;
 import homeWork.family_tree.family.FamilyTree;
 import homeWork.family_tree.human.Gender;
 import homeWork.family_tree.human.Human;
+import homeWork.family_tree.service.Service;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "homeWork/family_tree/myTree.txt";
+        Service service = new Service();
+
+
+        String filePath = "src/homeWork/family_tree/myTree.txt";
 //        FamilyTree familyTree = myTree();
         FamilyTree familyTree = load(filePath);
-        System.out.println(familyTree);
+//        System.out.println(familyTree);
 
         save(familyTree, filePath);
     }

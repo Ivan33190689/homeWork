@@ -3,10 +3,9 @@ package homeWork.family_tree.family;
 import homeWork.family_tree.human.Human;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Iterable<Human> {
     private List<Human> humanList;
 
     public FamilyTree() {
@@ -48,6 +47,12 @@ public class FamilyTree implements Serializable {
         }
         return null;
     }
+    public void sortByName() {
+        humanList.sort(new HumanComparatorByName());
+    }
+    public void sortByBirthDate() {
+        humanList.sort(new HumanComparatorByBirthDate());
+    }
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -58,5 +63,8 @@ public class FamilyTree implements Serializable {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+    public Iterator<Human> iterator() {
+        return  new HumanIterator(humanList);
     }
 }
